@@ -1,0 +1,118 @@
+<div class="nav navbar navbar-light bg-primary">
+  <div class="container-fluid">
+    <h2>Restaurent Record App</h2>
+    <div class="d-flex">
+      <button type="button"(click)="clickAddResto()"  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Restaurent
+      </button>
+    </div>
+  </div>
+</div>
+<!-- using jumbotron-->
+
+<div class="text-white text-center py-5 px-4 my-5">
+  <div>
+    <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong style="color: blue;">Restaurent Records
+        Management</strong></h2>
+    <p class="mx-5 mb-5" style="color: blue;">
+      You can save Records of Restaurent Using Angular 12 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
+      labore, enim quas doloremque voluptatum eum voluptatibus nobis. Facilis, quidem facere sed molestias eligendi quam
+      quis dignissimos, dolorum alias exercitationem iure.
+    </p>
+    <a class="btn btn-primary btn-lg" target="_blank" type="button" href="https://www.youtube.com/">
+      viewCode
+    </a>
+  </div>
+</div>
+
+
+<!--Table display here-->
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="=col">Restaurant</th>
+      <th scope="=col">Name</th>
+      <th scope="=col">Email</th>
+      <th scope="=col">Mobile</th>
+      <th scope="=col">Address</th>
+      <th scope="=col">Service</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let x of allRestaurantData">
+      <td>{{x.id}}</td>
+      <td>{{x.name}}</td>
+      <td>{{x.email}}</td>
+      <td>{{x.mobile}}</td>
+      <td>{{x.address}}</td>
+      <td>{{x.services}}</td>
+      <td>
+        <button class="btn btn-info"data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="onEditResto(x)"> Edit</button>&nbsp;
+        <button class="btn btn-danger" (click)="deleteResto(x)">Delete</button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+<!--Modal use-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input formControlName="name" type="text" class="form-control-plaintext" id="staticEmail"
+                placeholder="Enter Restaurant Name">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email Id</label>
+            <div class="col-sm-10">
+              <input formControlName="email" type="text" class="form-control-plaintext" id="staticEmail"
+                placeholder="Enter Restaurant Email Id">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Mobile</label>
+            <div class="col-sm-10">
+              <input formControlName="mobile" type="text" class="form-control-plaintext" id="staticEmail"
+                placeholder="Enter Restaurant Mobile Number">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-10">
+              <input formControlName="address" type="text" class="form-control-plaintext" id="staticEmail"
+                placeholder="Enter Restaurant Address">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Service</label>
+            <div class="col-sm-10">
+              <input formControlName="services" type="text" class="form-control-plaintext" id="staticEmail"
+                placeholder="Enter Restaurant Services like tea, cofee">
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+        <button *ngIf="showAdd" type="button" class="btn btn-primary" [style.display]="showAdd" (click)="addResto()">Add Details</button>
+        <button *ngIf="showbtn"type="button" (click)="clickAddResto()" [style.display]="showbtn" class="btn btn-primary" (click)="updateResto()">Update Details</button>
+
+      </div> 
+    </div>
+  </div>
+</div>
